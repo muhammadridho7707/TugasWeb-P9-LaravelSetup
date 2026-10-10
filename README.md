@@ -1,58 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Tugas Rutin 9 - Pemrograman Web (Laravel Setup)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyek ini adalah implementasi Tugas Rutin 9 untuk mata kuliah Pemrograman Web menggunakan framework Laravel. Fokus utama pada tugas ini adalah konfigurasi awal (setup), pemahaman struktur folder, pembuatan database, dan dasar-dasar routing serta view (Blade).
 
-## About Laravel
+🛠️ Prasyarat
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Pastikan sistem Anda telah menginstal perangkat lunak berikut sebelum memulai:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+PHP (versi 8.x direkomendasikan)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Composer
 
-## Learning Laravel
+Web Server lokal (Laragon)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+MySQL
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+🚀 Langkah Instalasi & Setup
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer Anda:
 
-## Agentic Development
+1. Membuat atau Mengunduh Proyek
+   Jika Anda membuat proyek baru dari awal, gunakan perintah:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+composer create-project laravel/laravel tugas-rutin-9
 
-```bash
-composer require laravel/boost --dev
+(Catatan: Jika Anda melakukan clone/unduh dari repositori Git, jalankan composer install terlebih dahulu di dalam folder proyek).
 
-php artisan boost:install
-```
+2. Pengaturan Environment (.env)
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Salin (copy) file .env.example dan ubah namanya menjadi .env.
 
-## Contributing
+Jika Anda melakukan clone proyek, buat application key baru dengan menjalankan:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+php artisan key:generate
 
-## Code of Conduct
+3. Konfigurasi Database
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Buka aplikasi Laragon atau XAMPP dan jalankan MySQL.
 
-## Security Vulnerabilities
+Buka file .env di text editor Anda, lalu sesuaikan kredensial database pada bagian ini:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tr-9
+DB_USERNAME=root
+DB_PASSWORD=
 
-## License
+Pastikan Anda sudah membuat database kosong dengan nama yang sesuai (nama_database_tugas) di phpMyAdmin.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Menjalankan Migrasi
+   Jalankan perintah berikut untuk membuat tabel-tabel ke dalam database Anda:
+
+php artisan migrate
+
+5. Menjalankan Server Lokal
+   Mulai server development dengan perintah:
+
+php artisan serve
+
+Akses aplikasi melalui browser di http://localhost:8000.
+
+📂 Skema & Penjelasan Struktur Folder Utama
+
+Berikut adalah skema folder dasar proyek Laravel yang relevan dengan tugas ini:
+
+tugas-rutin-9/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/     <-- Tempat menyimpan Controller
+│   └── Models/              <-- Tempat menyimpan Model
+├── database/
+│   └── migrations/          <-- Tempat menyimpan file migrasi database
+├── public/
+│   ├── index.php            <-- Titik masuk (entry point) aplikasi
+│   └── (css, js, images)    <-- Aset statis publik
+├── resources/
+│   └── views/               <-- Tempat menyimpan file Blade (tampilan UI)
+│       ├── layouts/         <-- Folder untuk template layout utama
+│       │   └── app.blade.php
+│       └── welcome.blade.php
+├── routes/
+│   └── web.php              <-- Tempat mendefinisikan rute web
+├── .env                     <-- File konfigurasi environment (database, dll)
+└── composer.json            <-- Konfigurasi dependencies PHP
+
+Penjelasan Detail Folder:
+
+app/: Merupakan tempat menyimpan logika utama aplikasi. Folder ini berisi Models (app/Models/) yang merepresentasikan tabel database, serta Controllers (app/Http/Controllers/) yang mengatur alur data dari rute ke tampilan.
+
+routes/: Folder ini mengatur semua rute (URL) aplikasi. File yang paling sering digunakan adalah routes/web.php, tempat kita menghubungkan URL yang diketik pengguna di browser dengan Controller atau View yang sesuai.
+
+resources/: Berisi views (tampilan antarmuka) dan aset yang belum dikompilasi. Di tugas ini, kita banyak bekerja di dalam resources/views/ menggunakan templating engine Blade (contoh: app.blade.php), termasuk membuat folder layouts untuk modularisasi halaman.
+
+database/: Menyimpan file konfigurasi database, terutama migrations (database/migrations/). Migrasi berfungsi seperti "version control" untuk skema database, memungkinkan kita membuat tabel tanpa menulis perintah SQL secara manual.
+
+public/: Titik masuk utama aplikasi web. File index.php di sini memuat semua permintaan. Folder ini juga merupakan tempat untuk menyimpan aset statis yang bisa diakses langsung secara publik, seperti file CSS, JavaScript, dan gambar.
+
+.env: File environment (bukan folder) yang tersembunyi di root aplikasi. Sangat penting untuk menyimpan konfigurasi yang sifatnya rahasia dan spesifik untuk setiap lingkungan (lokal vs production), seperti kata sandi database.
